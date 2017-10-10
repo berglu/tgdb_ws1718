@@ -167,3 +167,5 @@ Speichere alle Änderungen deiner offenen Transaktion. Wie lautet der SQL-Befehl
 ```sql
 commit;
 ```
+
+
