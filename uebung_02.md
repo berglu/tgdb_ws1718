@@ -108,13 +108,13 @@ Erstelle für dich einen neuen Benutzer.
 ```sql
 insert into ACCOUNT
 values ((SELECT MAX(ACCOUNT_ID) + 1 from ACCOUNT),'Berg','Lukas','berglu@hochschule-trier.de',sysdate,sysdate);
-
 ```
 
 ### Aufgabe 12
 Erstelle für deinen neuen Benutzer ein neues Auto. Dieses Auto dient als Vorlage für die nächten Aufgaben.
 
 #### Lösung
+```sql
 insert into VEHICLE
 values ((SELECT MAX(VEHICLE_ID) + 1 from VEHICLE),
 1,
@@ -134,6 +134,7 @@ Deine Lösung
 Verknüpfe das aus Aufgabe 12 erstellte neue Auto mit deinem neuen Benutzer aus Aufgabe 11 in der Tabelle `ACC_VEHIC` und erstelle den ersten Rechnungsbeleg.
 
 #### Lösung
+```sql
 insert into ACC_VEHIC
 values ((SELECT MAX(ACC_VEHIC_ID) + 1 from ACC_VEHIC),
 10,
