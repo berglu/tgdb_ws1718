@@ -156,8 +156,8 @@ Deine Lösung
 Ändere den Vorname `SURNAME` des Datensatzes mit der ID `7` in der Tabelle `ACCOUNT` auf `Zimmermann`.
 
 #### Lösung
+```sql
 update ACCOUNT set SURNAME='Zimmermann' where ACCOUNT_ID='7';
-Deine Lösung
 ```
 
 ### Aufgabe 15
