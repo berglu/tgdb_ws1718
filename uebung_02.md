@@ -127,7 +127,6 @@ values ((SELECT MAX(VEHICLE_ID) + 1 from VEHICLE),
 sysdate,
 sysdate);
 -- Es handelt sich dabei um ein Ferrari 355 S Spider Scaglietti aus dem Jahre 1957
-Deine Lösung
 ```
 
 ### Aufgabe 13
@@ -150,7 +149,6 @@ null,
 null,
 sysdate,
 sysdate);
-Deine Lösung
 ```
 
 ### Aufgabe 14
