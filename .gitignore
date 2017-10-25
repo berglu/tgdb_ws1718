@@ -12,3 +12,13 @@ out
 
 # vim tmp
 *.swp
+
+# MacBook
+**/.DS_Store
+
+# generated pdf
+**/uebung_*.pdf
+
+# generated tex
+**/*.tex
+**/*.log

@@ -33,7 +33,7 @@ Was bedeutet die gestrichelte Linie, die zwischen der Tabelle `ACC_VEHIC` und `G
 Die Bestrichelte Linie bedeutet Partielle Partizipation (eine Instanz einer Klasse kann in Beziehung zu einer
 Instanz der zweiten Klasse stehen). 'DEFAULT_GAS_STATION' kann auch 'null' sein.
 
-### Aufgabe 3
+### Aufgabe 4
 Die folgende Abbildung beschreibt eine Beziehung zwischen Tabellen. Sie wird auch `n` zu `m` Beziehung genannt. Beschreibe kurz die Bedeutung dieser Beziehung.
 Nehme dir diesen [Artikel](https://glossar.hs-augsburg.de/Beziehungstypen) zu Hilfe.
 
@@ -41,13 +41,13 @@ Nehme dir diesen [Artikel](https://glossar.hs-augsburg.de/Beziehungstypen) zu Hi
 
 In diesem Fall wird dargestellt, dass eine Person mehrere (n) Hobbys haben kann, jedoch jedem Hobby eine genaue ID zugeordnet sein muss.
 
-### Aufgabe 4
+### Aufgabe 5
 Was bedeutet der Buchstabe `P` und `F` neben den Attributen von Tabellen?
 
 #### Lösung
 P steht für Primärschlüssel und F für Fremdschlüssel
 
-### Aufgabe 5
+### Aufgabe 6
 Importiere die SQL-Dump-Datei in dein eigenes Schema. Wie lautet dazu der Befehl um dem import zu starten?
 
 #### Lösung
@@ -55,7 +55,7 @@ Importiere die SQL-Dump-Datei in dein eigenes Schema. Wie lautet dazu der Befehl
 start tutorium.sql
 ```
 
-### Aufgabe 6
+### Aufgabe 7
 Gebe alle Datensätze der Tabelle `ACCOUNT` aus.
 
 #### Lösung
@@ -63,15 +63,15 @@ Gebe alle Datensätze der Tabelle `ACCOUNT` aus.
 select * from account;
 ```
 
-### Aufgabe 7
-Modifiziere Aufgabe 6 so, dass nur die Spalte `ACCOUNT_ID` ausgegeben wird.
+### Aufgabe 8
+Modifiziere Aufgabe 7 so, dass nur die Spalte `ACCOUNT_ID` ausgegeben wird.
 
 #### Lösung
 ```sql
  select ACCOUNT_ID from ACCOUNT;
 ```
 
-### Aufgabe 8
+### Aufgabe 9
 Gebe alle Spalten der Tabelle `VEHICLE` aus.
 
 #### Lösung
@@ -79,8 +79,8 @@ Gebe alle Spalten der Tabelle `VEHICLE` aus.
 select COLUMN_NAME from USER_TAB_COLUMNS where TABLE_NAME = 'VEHICLE';
 ```
 
-### Aufgabe 9
-Kombiniere Aufgabe 7 und 8 so, dass nur Personen (`ACCOUNT`) angezeigt werden, die ein Auto (`VEHICLE`) besitzen.
+### Aufgabe 10
+Kombiniere Aufgabe 7 und 9 so, dass nur Personen (`ACCOUNT`) angezeigt werden, die ein Auto (`VEHICLE`) besitzen.
 
 #### Lösung
 ```sql
@@ -89,8 +89,8 @@ FROM ACCOUNT account, ACC_VEHIC vehicle
 WHERE account.ACCOUNT_ID = vehicle.ACCOUNT_ID;
 ```
 
-### Aufgabe 10
-Modifizierde die Aufgabe 9 so, dass nur die Person mit der `ACCOUNT_ID` = `7` angezeigt wird.
+### Aufgabe 11
+Modifizierde die Aufgabe 10 so, dass nur die Person mit der `ACCOUNT_ID` = `7` angezeigt wird.
 
 #### Lösung
 ```sql
@@ -100,7 +100,7 @@ WHERE account.ACCOUNT_ID = vehicle.ACCOUNT_ID
 AND vehicle.ACCOUNT_ID=7;
 ```
 
-### Aufgabe 11
+### Aufgabe 12
 Erstelle für dich einen neuen Benutzer.
 > Achtung, nutze für die Spalten `C_DATE` und `U_DATE` vorerst die Syntax `SYSDATE` - [Dokumentation](https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions172.htm)
 
@@ -110,7 +110,7 @@ insert into ACCOUNT
 values ((SELECT MAX(ACCOUNT_ID) + 1 from ACCOUNT),'Berg','Lukas','berglu@hochschule-trier.de',sysdate,sysdate);
 ```
 
-### Aufgabe 12
+### Aufgabe 13
 Erstelle für deinen neuen Benutzer ein neues Auto. Dieses Auto dient als Vorlage für die nächten Aufgaben.
 
 #### Lösung
@@ -129,8 +129,8 @@ sysdate);
 -- Es handelt sich dabei um ein Ferrari 355 S Spider Scaglietti aus dem Jahre 1957
 ```
 
-### Aufgabe 13
-Verknüpfe das aus Aufgabe 12 erstellte neue Auto mit deinem neuen Benutzer aus Aufgabe 11 in der Tabelle `ACC_VEHIC` und erstelle den ersten Rechnungsbeleg.
+### Aufgabe 14
+Verknüpfe das aus Aufgabe 13 erstellte neue Auto mit deinem neuen Benutzer aus Aufgabe 12 in der Tabelle `ACC_VEHIC` und erstelle den ersten Rechnungsbeleg.
 
 #### Lösung
 ```sql
@@ -151,7 +151,7 @@ sysdate,
 sysdate);
 ```
 
-### Aufgabe 14
+### Aufgabe 15
 Ändere den Vorname `SURNAME` des Datensatzes mit der ID `7` in der Tabelle `ACCOUNT` auf `Zimmermann`.
 
 #### Lösung
@@ -159,7 +159,7 @@ sysdate);
 update ACCOUNT set SURNAME='Zimmermann' where ACCOUNT_ID='7';
 ```
 
-### Aufgabe 15
+### Aufgabe 16
 Speichere alle Änderungen deiner offenen Transaktion. Wie lautet der SQL-Befehl dazu?
 
 #### Lösung
