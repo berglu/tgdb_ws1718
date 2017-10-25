@@ -94,7 +94,14 @@ Erstelle eine INNER JOIN (optional `WHERE`) Abfrage um die Beziehung zwischen de
 ```sql
 
 --Abfrage
- 
+ select acc.forename "Vorname", acc.surname "Nachname", vet.vehicle_type_name "Fahrzeugtyp", veh.version "Modell", veh.build_year "Baujahr", pro.producer_name "Hersteller", gas.gas_name "Kraftstoff"
+ from acc_vehic acv
+ inner join account acc on(acv.account_id=acc.account_id)
+ inner join vehicle veh on (acv.vehicle_id=veh.vehicle_id)
+ inner join vehicle_type vet on(veh.vehicle_type_id=vet.vehicle_type_id)
+ inner join producer pro on(veh.producer_id=pro.producer_id)
+ inner join gas gas on(veh.default_gas_id=gas.gas_id);
+
 
 -- Zeilen
 column forename format a15;
