@@ -203,7 +203,7 @@ Wie viele Benutzer haben einen PKW und einen LKW registriert?
 
 #### Lösung
 ```sql
-select count(distinct account_id) as "Anzahl LKW & PKW Benutzer"
+select count(distinct account_id) as "Anzahl LKW&PKW Benutzer"
 from acc_vehic acv
 inner join vehicle veh on (acv.vehicle_id=veh.vehicle_id)
 inner join vehicle_type vet on (veh.vehicle_type_id=vet.vehicle_type_id) 
@@ -216,7 +216,7 @@ Führe den Patch `02_patch.sql`, der sich im Verzeichnis `sql` befindet, in dein
 
 #### Lösung
 ```sql
-Deine Lösung
+start ".../02_patch.sql"
 ```
 
 ### Aufgabe 14
