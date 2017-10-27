@@ -17,7 +17,16 @@ Um genauere Informationen und Prognosen mit Data Mining Werkzeugen zu schöpfen,
 
 #### Lösung
 ```sql
-Deine Lösung
+create table domicile(
+dom_id number(4) not null,
+street varchar(50) not null,
+plz number(5)not null,
+city varchar(30)not null);
+
+create table dom_account(
+account_id number(4)not null,
+first_dom_id number(4)not null,
+seconds_dom_id number(4));
 ```
 
 ### Aufgabe 2
@@ -25,7 +34,9 @@ Als App Entwickler/in für Android und iOS möchtest du dich nicht darauf verlas
 
 #### Lösung
 ```sql
-Deine Lösung
+alter table gas_station 
+add (x_coor number(5,15),y_coor number(5,15));
+
 ```
 
 ### Aufgabe 3 - Für Enthusiasten
@@ -44,7 +55,12 @@ Wurden die Tabellen-Rechte direkt an dich bzw. an `PUBLIC` vergeben?
 
 ##### Lösung
 ```sql
-Deine Lösung
+select *
+from ALL_TAB_PRIVS
+where TABLE_SCHEMA=’SCOTT’
+and TABLE_NAME=’DEPT’;
+
+Update-Rechte von Scott an Public vergeben
 ```
 
 #### Aufgabe 4.2
@@ -52,7 +68,9 @@ Welche Rollen besitzt du direkt?
 
 ##### Lösung
 ```sql
-Deine Lösung
+select * from user_role_privs;
+
+BW_Student & FH_Trier
 ```
 
 #### Aufgabe 4.3
@@ -60,7 +78,10 @@ Welche Rollen haben die Rollen?
 
 ##### Lösung
 ```sql
-Deine Lösung
+ select * from role_role_privs;
+ 
+ FH_Trier hat WI-Student als Rolle
+ BW_Student hat Student als Rolle
 ```
 
 #### Aufgabe 4.4
@@ -68,7 +89,12 @@ Haben die Rollen Rechte an `SCOTT.EMP` oder `SCOTT.DEPT`?
 
 ##### Lösung
 ```sql
-Deine Lösung
+select *
+from ALL_TAB_PRIVS
+where TABLE_SCHEMA=’SCOTT’
+and TABLE_NAME=’DEPT’;
+
+Public hat Update-Rechte an Scott.Ddept, es wurden keine Rechte für Rollen vergeben
 ```
 
 ### Aufgabe 5 - Für Enthusiasten
