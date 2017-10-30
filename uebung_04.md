@@ -39,7 +39,7 @@ add (x_coor number(5,15),y_coor number(5,15));
 
 ```
 
-### Aufgabe 3 - Für Enthusiasten
+### Aufgabe 3
 Welche Kunden haben im Jahr 2017 mehr als den Durchschnitt getank?
 
 #### Lösung
@@ -97,7 +97,7 @@ and TABLE_NAME=’DEPT’;
 Public hat Update-Rechte an Scott.Ddept, es wurden keine Rechte für Rollen vergeben
 ```
 
-### Aufgabe 5 - Für Enthusiasten
+### Aufgabe 5
 Es soll für jede Tankstelle der Umsatz einzelner Jahre aufgelistet werden auf Basis der Daten, die Benutzer durch ihre Quittungen eingegeben haben. Sortiere erst nach Jahr und anschließend nach der Tankstelle. Beispiel:
 
 | Jahr  | Anbieter  | Straße            | PLZ   | Stadt | Land          | Umsatz    |
