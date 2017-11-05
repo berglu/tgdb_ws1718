@@ -224,7 +224,7 @@ Aktualisiere den Steuersatz aller Belege auf den Steuersatz des Landes, indem di
 
 #### Lösung
 ```sql
-Deine Lösung
+
 ```
 
 
