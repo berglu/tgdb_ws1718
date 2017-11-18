@@ -38,7 +38,33 @@ END;
 
 #### Lösung
 ```sql
-Deine Lösung
+DECLARE
+  v_account_id account.account_id%TYPE;
+  v_surname account.surname%TYPE;
+  v_forename account.forename%TYPE;
+  v_cars acc_vehic.vehicle_id%TYPE;
+
+BEGIN
+  SELECT MAX(a.account_id), a.surname, a.forename, count(accv.vehicle_id)
+  INTO v_account_id, v_surname, v_forename, v_cars
+  FROM account a
+  INNER JOIN acc_vehic accv ON (a.account_id=accv.account_id)
+  WHERE a.surname LIKE 'P%'
+  GROUP BY a.surname, a.forename;
+
+  DBMS_OUTPUT.PUT_LINE('Der neuste Benutzer mit dem Anfangsbuchstaben P im Nachnamen hat die ID ' || v_account_id);
+  DBMS_OUTPUT.PUT_LINE('Vorname: '  || v_forename);
+  DBMS_OUTPUT.PUT_LINE('Nachname: '  || v_surname);
+  DBMS_OUTPUT.PUT_LINE('Autos: '  || v_cars);
+
+EXCEPTION
+  WHEN NO_DATA_FOUND
+    THEN RAISE_APPLICATION_ERROR(-20001, 'Es wurde kein Benutzer gefunden');
+  WHEN OTHERS
+    THEN DBMS_OUTPUT.PUT_LINE ('Folgender unerwarteter Fehler ist aufgetreten: ');
+  RAISE;
+END;
+/
 ```
 
 ### Aufgabe 2
@@ -46,7 +72,37 @@ Schreibe einen anonymen PL/SQL-Codeblock, der die Tankstelle mit der kleinsten I
 
 #### Lösung
 ```sql
-Deine Lösung
+DECLARE
+  v_gas_station_id gas_station.gas_station_id%TYPE;
+  v_provider_name provider.provider_name%TYPE;
+  v_plz address.plz%TYPE;
+  v_street gas_station.street%TYPE;
+  v_city address.city%TYPE;
+
+BEGIN
+  SELECT MIN(g.gas_station_id), p.provider_name, a.plz, g.street, a.city
+  INTO v_gas_station_id, v_provider_name, v_plz, v_street, v_city
+  FROM gas_station g
+  INNER JOIN provider p ON (g.provider_id = p.provider_id)
+  INNER JOIN address a ON (g.address_id =a.address_id)
+  WHERE v_gas_station_id = (SELECT MIN(g.gas_station_id) from gas_station)
+  GROUP BY g.gas_station_id, p.provider_name, a.plz, g.street, a.city;
+
+  DBMS_OUTPUT.PUT_LINE('Tankstellen-ID: ' || v_gas_station_id);
+  DBMS_OUTPUT.PUT_LINE('Provider: ' || v_provider_name);
+  DBMS_OUTPUT.PUT_LINE('Strasse;' || v_street);
+  DBMS_OUTPUT.PUT_LINE('PLZ: ' || v_plz);
+  DBMS_OUTPUT.PUT_LINE('Stadt: ' || v_city);
+
+
+EXCEPTION
+  WHEN NO_DATA_FOUND
+    THEN RAISE_APPLICATION_ERROR(-20001, 'Es wurde keine Tankstelle gefunden');
+  WHEN OTHERS
+    THEN DBMS_OUTPUT.PUT_LINE ('Folgender unerwarteter Fehler ist aufgetreten: ');
+  RAISE;
+END;
+/
 ```
 
 ### Aufgabe 3

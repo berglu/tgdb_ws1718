@@ -20,7 +20,13 @@ Wie heißt der Primary Key Contraint der Tabelle `VEHICLE` und für welche Spalt
 
 #### Lösung
 ```sql
-Deine Lösung
+SELECT ucc.constraint_name, ucc.column_name, ucc.position
+FROM User_Cons_Columns ucc
+WHERE constraint_name IN(
+SELECT constraint_name
+FROM user_constraints uc
+WHERE uc.table_name LIKE 'ACC_VEHIC'
+AND uc.constraint_type ='P');
 ```
 
 ### Aufgabe 2
@@ -28,7 +34,17 @@ Für welche Spalte**n** der Tabelle `ACC_VEHIC` wurde ein Foreign Key angelegt u
 
 #### Lösung
 ```sql
-Deine Lösung
+COLUMN constraint_name FORMAT a25
+COLUMN column_name FORMAT a15
+COLUMN table_name FORMAT a15
+
+SELECT ucc.constraint_name, ucc.column_name, ucc.table_name
+FROM User_Cons_Columns ucc
+WHERE constraint_name IN(
+SELECT constraint_name
+FROM user_constraints uc
+WHERE uc.table_name LIKE 'ACC_VEHIC'
+AND uc.constraint_type ='R');
 ```
 
 ### Aufgabe 3
@@ -36,7 +52,14 @@ Erstelle einen Check Constraint für die Tabelle `ACCOUNT`, dass der Wert der Sp
 
 #### Lösung
 ```sql
-Deine Lösung
+-- Constraint
+ALTER TABLE ACCOUNT ADD CONSTRAINT c_date
+CHECK (u_date >= c_date);
+
+--Überprüfung
+UODATE account
+SET u_date = TO_DATE('2014-11-13,YYYY-MM-DD')
+WHERE Account_id =1;
 ```
 
 ### Aufgabe 4
@@ -44,7 +67,14 @@ Erstelle einen Check Constraint der überprüft, ob der erste Buchstabe der Spal
 
 #### Lösung
 ```sql
-Deine Lösung
+ALTER TABLE gas
+ADD CONSTRAINT u_gas_name
+CHECK (gas_name =INITCAP(gas_name));
+
+-- Alternative
+ALTER TABLE gas
+ADD CONSTRAINT u_gas_name_alternative
+CHECK (REGEXP_LIKE(gas_name, '^[A-Z].*$'));
 ```
 
 ### Aufgabe 5
@@ -58,7 +88,9 @@ Erstelle einen Check Contraint der überprüft, ob der Wert der Spalte `IDENTICA
 
 #### Lösung
 ```sql
-Deine Lösung
+alter table acc_vehic
+add constraint c_kennzeichen_entspricht
+check(regexp_like(identicator, '^[A-Z]{1-3}:([A-Z]{1-2}:[1-9][0-9]{0,3}|[1-9][0-9]{0,5})$','c'));
 ```
 
 ### Aufgabe 6 - Wiederholung
