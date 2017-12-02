@@ -14,13 +14,23 @@
 Wo liegen die Vor- und Nachteile eines Trigger in Vergleich zu einer Prozedur?
 
 #### Lösung
-Deine Lösung
+Vorteile:
+- automatische Ausführung nach bestimmtem Auslöser
+- können nach belieben ein- und ausgeschaltet werden
+
+Nachteile:
+- Gravierende Fehler beim falschen Erstellen
+  (z.B. Ändern des Primäarschlüssles oder Fremdschlüssels)
+- Triggerkette oft schwer nachzuvollziehen
+- Festlegen ob der Trigger pro verändertem Datensatz oder pro Anweisungsaufruf ausgelöst werden soll. 
+  (z.B.UPDATE auf 100 Sätze,im ersten Fall wird der Trigger 100 Mal aktiviert, im zweiten Fall nur einmal.
 
 ### Aufgabe 2
 Wo drin unterscheidet sich der `Row Level Trigger` von einem `Statement Trigger`?
 
 #### Lösung
-Deine Lösung
+1) Row Level Trigger: Der Trigger wird für jede veränderte Zeile ausgeführt
+2) Statement Trigger: Der Trigger wird für jedes SQL-Statement ausgeführt
 
 ### Aufgabe 3
 Schaue dir den folgenden PL/SQL-Code an. Was macht er?
@@ -51,7 +61,8 @@ END;
 ```
 
 #### Lösung
-Deine Lösung
+Dieser Trigger verhindert, dass die Account_ID verändert & damit selbst gewählt wird.
+Wenn eine Account_ID erstellt wird, wird diese automatisch mit einem Wert gefüllt(seq_account_id)
 
 ### Aufgabe 4
 Verbessere den Trigger aus Aufgabe 2 so, dass
