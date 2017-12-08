@@ -15,8 +15,9 @@ Wo liegen die Vor- und Nachteile eines Trigger in Vergleich zu einer Prozedur?
 
 #### Lösung
 Vorteile:
-- automatische Ausführung nach bestimmtem Auslöser
+- automatische Ausführung vor oder nach dem Event. Er muss nicht explizit gestartet werden.
 - können nach belieben ein- und ausgeschaltet werden
+- Es sind keine zusätzlichen Berechtigungen notwendig
 
 Nachteile:
 - Gravierende Fehler beim falschen Erstellen
@@ -24,6 +25,8 @@ Nachteile:
 - Triggerkette oft schwer nachzuvollziehen
 - Festlegen ob der Trigger pro verändertem Datensatz oder pro Anweisungsaufruf ausgelöst werden soll. 
   (z.B.UPDATE auf 100 Sätze,im ersten Fall wird der Trigger 100 Mal aktiviert, im zweiten Fall nur einmal.
+- kann keinen Rückgabewert liefern
+- kann keine Parameter übergeben bekommen
 
 ### Aufgabe 2
 Wo drin unterscheidet sich der `Row Level Trigger` von einem `Statement Trigger`?
@@ -65,7 +68,7 @@ Dieser Trigger verhindert, dass die Account_ID verändert & damit selbst gewähl
 Wenn eine Account_ID erstellt wird, wird diese automatisch mit einem Wert gefüllt(seq_account_id)
 
 ### Aufgabe 4
-Verbessere den Trigger aus Aufgabe 2 so, dass
+Verbessere den Trigger aus Aufgabe 3 so, dass
 + wenn versucht wird einen Datensatz mit `NULL` Werten zu füllen, die alten Wert für alle Spalten, die als `NOT NULL` gekennzeichnet sind, behalten bleiben.
 + es nicht möglich ist, das die Werte für `C_DATE` und `U_DATE` in der Zukunkt liegen
 + `U_DATE` >= `C_DATE` sein muss
@@ -76,7 +79,28 @@ Nutze die Lösung der Aufgabe 2, Aufgabenblatt 8 um die Aufgabe zu lösen. Dort 
 
 #### Lösung
 ```sql
-Deine Lösung
+CREATE SEQUENCE seq_account_id
+START WITH 1000
+INCREMENT BY 1
+MAXVALUE 99999999
+CYCLE
+CACHE 20;
+
+CREATE OR REPLACE TRIGGER BIU_ACCOUNT
+BEFORE INSERT OR UPDATE OF account_id ON account
+FOR EACH ROW
+DECLARE
+
+BEGIN
+  IF UPDATING('account_id') THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Die Account-ID darf nicht verändert oder frei gewählt werden!');
+  END IF;
+
+  IF INSERTING THEN
+    :NEW.account_id := seq_account_id.NEXTVAL;
+  END IF;
+END;
+/
 ```
 
 ### Aufgabe 5
